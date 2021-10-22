@@ -28,6 +28,3 @@ await app.listen({ port: 8000 });
 
 // await app.listen({ port: 3000 });
 
-/*
-deno run -A ./src/index.ts
-*/

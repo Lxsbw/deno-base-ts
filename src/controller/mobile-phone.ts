@@ -18,7 +18,7 @@ class Controller {
 
   static async findAll(ctx: any) {
     const employees = await mobilePhoneService.findAll({});
-    // console.log(employees);
+    console.log(employees);
     ctx.response.body = employees;
   }
 
