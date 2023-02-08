@@ -1,4 +1,4 @@
-import { Application } from './deps.ts';
+import { Application } from 'oak';
 import router from './routes/routing.ts';
 
 const app = new Application();

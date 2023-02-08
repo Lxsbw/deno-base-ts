@@ -1,4 +1,4 @@
-import { Router } from '../deps.ts';
+import { Router } from 'oak';
 import Controller from '../controller/mobile-phone.ts';
 
 const router = new Router();

@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "deno run --allow-net --importmap=import_map.json --unstable ./src/index.ts",
+    "dev": "denon run --allow-net --importmap=import_map.json --unstable ./src/index.ts",
+    "test": "deno test --allow-net --importmap=import_map.json --unstable ./src/index.ts",
+    "prd": "pm2 start ./src/index.ts --interpreter='deno' --interpreter-args='run --allow-net --importmap=import_map.json --unstable' --name=deno-base-ts",
+    "prd_old": "pm2 start 'deno run --allow-net --importmap=import_map.json --unstable ./src/index.ts' --name=deno-base-ts",
+    "stop": "pm2 stop deno-base-ts && pm2 delete deno-base-ts"
+  }
+}

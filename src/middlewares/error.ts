@@ -1,4 +1,4 @@
-import { Response } from '../deps.ts';
+import { Response } from 'oak';
 
 export default async ({ response }: { response: Response }, next: () => Promise<unknown>) => {
   try {
