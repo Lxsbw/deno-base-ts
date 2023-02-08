@@ -1,16 +1,12 @@
-# scripts.yaml
-scripts:
-  start: deno run --allow-net ./src/index.ts
-  dev: denon run --allow-net ./src/index.ts
-  test: deno test --allow-net server_test.ts
-  prd: pm2 start ./src/index.ts --interpreter="deno" --interpreter-args="run --allow-net" --name=deno-base-ts
-  prd_old: pm2 start 'deno run --allow-net ./src/index.ts' --name=deno-base-ts
-  stop: pm2 stop deno-base-ts && pm2 delete deno-base-ts
-
 # 运行
 
 # 普通方式
 # deno run --allow-net ./src/index.ts
+
+# PM2方式
+# pm2 start ./src/index.ts --interpreter="deno" --interpreter-args="run --allow-net" --name=deno-base-ts
+# pm2 start 'deno run --allow-net ./src/index.ts' --name=deno-base-ts
+# pm2 stop deno-base-ts && pm2 delete deno-base-ts
 
 # 安装denon（监控文件变动，类似nodemon）
 # deno install -qAf --unstable https://deno.land/x/denon/denon.ts
@@ -18,14 +14,12 @@ scripts:
 # 用denon运行
 # denon run --allow-net ./src/index.ts
 
-# 不好下载，弃用
-# 安装velociraptor（结合本文件，起到类似npm run效果，格式：vr run xxx / vr xxx）
-# deno install -qAn vr https://deno.land/x/velociraptor@1.5.0/cli.ts
-
-# Trex + import-map
+# 推荐：Trex + import-map（类似npm包管理）
 # deno install -A --unstable --import-map=https://deno.land/x/trex/import_map.json -n trex --no-check https://deno.land/x/trex/cli.ts
 # trex --version
-# trex install
+# trex install  # npm i
 # trex install --map fs http fmt
 # trex i --map oak
-# deno run --allow-net --import-map=import_map.json --unstable app.ts
+# deno run --allow-net --import-map=import_map.json --unstable ./src/index.ts
+# 用trex运行
+# trex run dev
