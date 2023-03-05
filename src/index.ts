@@ -5,6 +5,14 @@ const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
 
+// static content
+app.use(async (context, next) => {
+  await send(context, context.request.url.pathname, {
+    root: `${Deno.cwd()}/public`,
+    index: 'index.html'
+  });
+});
+
 console.log('Server Port 8000');
 
 await app.listen({ port: 8000 });
