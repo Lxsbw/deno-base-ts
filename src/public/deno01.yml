@@ -1,0 +1,215 @@
+openapi: 3.0.3
+info:
+  title: Swagger Deno - OpenAPI 3.0
+  description: |-
+    This is a sample Deno server based on the OpenAPI 3.0 specification.  You can find out more about
+    Swagger at [https://swagger.io](https://swagger.io). 
+
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+
+tags:
+  - name: MobilePhone
+    description: Operations about MobilePhone
+
+paths:
+  /api/mobile-phone/findone/{_id}:
+    get:
+      tags:
+        - MobilePhone
+      summary: id查找
+      description: 'id查找'
+      # operationId: getUserByName
+      parameters:
+        - name: _id
+          in: path
+          description: 'id'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+  /api/mobile-phone/findall:
+    get:
+      tags:
+        - MobilePhone
+      summary: 查找
+      description: ''
+      # operationId: loginUser
+      parameters:
+        - name: _id
+          in: query
+          description: id
+          required: false
+          schema:
+            type: string
+        - name: model_name
+          in: query
+          description: 手机型号
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid username/password supplied
+  /api/mobile-phone/create:
+    post:
+      tags:
+        - MobilePhone
+      summary: 添加手机
+      description: 添加手机.
+      #operationId: createUser
+      requestBody:
+        description: 手机信息
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MobilePhone'
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobilePhone'
+  /api/mobile-phone/update:
+    put:
+      tags:
+        - MobilePhone
+      summary: 更新手机
+      description: 更新手机.
+      # operationId: updateUser
+      requestBody:
+        description: 手机信息
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MobilePhoneUpd'
+      responses:
+        default:
+          description: successful operation
+  /api/mobile-phone/delete/{_id}:
+    delete:
+      tags:
+        - MobilePhone
+      summary: 删除手机
+      description: 删除手机.
+      operationId: deleteMobilePhone
+      parameters:
+        - name: _id
+          in: path
+          description: The name that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+
+components:
+  schemas:
+    MobilePhone:
+      type: object
+      required:
+      - "model_name"
+      - "size"
+      - "spec"
+      properties:
+        model_name:
+          type: string
+          description: "手机型号"
+          example: "xx"
+        size:
+          type: string
+          description: "尺寸"
+          example: "4.7"
+        spec:
+          type: string
+          description: "规格"
+          example: "black"
+        ram:
+          type: integer
+          format: int32
+          description: "内存"
+          example: 4
+        rom:
+          type: integer
+          format: int32
+          description: "空间"
+          example: 64
+        seria_number:
+          type: string
+          description: "序列号"
+          example: "00010"
+      xml:
+        name: MobilePhone
+    MobilePhoneUpd:
+      type: object
+      required:
+      - "_id"
+      - "model_name"
+      properties:
+        _id:
+          type: string
+          description: "id"
+          example: "xx"
+        model_name:
+          type: string
+          description: "手机型号"
+          example: "xx"
+        size:
+          type: string
+          description: "尺寸"
+          example: "4.7"
+        spec:
+          type: string
+          description: "规格"
+          example: "black"
+        ram:
+          type: integer
+          format: "int32"
+          description: "内存"
+          example: 4
+        rom:
+          type: integer
+          format: "int32"
+          description: "空间"
+          example: 64
+        seria_number:
+          type: string
+          description: "序列号"
+          example: "00010"
+      xml:
+        name: MobilePhoneUpd
+    MobilePhoneDel:
+      type: object
+      required:
+      - "_id"
+      properties:
+        _id:
+          type: string
+          description: "id"
+          example: "xx"
+      xml:
+        name: MobilePhoneDel
