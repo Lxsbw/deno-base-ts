@@ -22,7 +22,7 @@ class Controller {
   }
 
   static async findById(ctx: any) {
-    const id: string = ctx.params.id;
+    const id: string = ctx.params._id;
     console.log('id:' + id);
     const employee = await mobilePhoneService.findById(id);
     console.log(employee);
@@ -38,7 +38,7 @@ class Controller {
   }
 
   static async deleteById(ctx: any) {
-    const id = ctx.params.id;
+    const id = ctx.params._id;
     const result = await mobilePhoneService.deleteById(id);
     ctx.response.body = { count: result };
   }

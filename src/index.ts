@@ -2,16 +2,22 @@ import { Application } from './deps.ts';
 import router from './routes/routing.ts';
 
 const app = new Application();
-app.use(router.routes());
-app.use(router.allowedMethods());
 
 // static content
 app.use(async (context, next) => {
-  await send(context, context.request.url.pathname, {
-    root: `${Deno.cwd()}/public`,
-    index: 'index.html'
-  });
+  try {
+    await context.send({
+      root: `${Deno.cwd()}/src/public`,
+      index: "index.html",
+    });
+  } catch {
+    await next();
+  }
 });
+
+
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 console.log('Server Port 8000');
 

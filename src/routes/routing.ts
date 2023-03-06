@@ -3,11 +3,11 @@ import Controller from '../controller/mobile-phone.ts';
 
 const router = new Router();
 
-router.post('/save', Controller.save);
-router.get('/find', Controller.findAll);
-router.get('/findone/:id', Controller.findById);
-router.put('/update', Controller.update);
-router.delete('/delete/:id', Controller.deleteById);
+router.post('/api/mobile-phone/create', Controller.save);
+router.get('/api/mobile-phone/findall', Controller.findAll);
+router.get('/api/mobile-phone/findone/:_id', Controller.findById);
+router.put('/api/mobile-phone/update', Controller.update);
+router.delete('/api/mobile-phone/delete/:_id', Controller.deleteById);
 
 router.get('/hello', context => {
   context.response.body = { mess: 'hello deno!' };

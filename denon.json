@@ -3,7 +3,7 @@
   "scripts": {
     "dev": {
       "cmd": "deno run ./src/index.ts",
-      "allow": ["net", "env"]
+      "allow": ["net", "env", "read", "write"]
     },
     "start": {
       "cmd": "deno run ./src/index.ts",
