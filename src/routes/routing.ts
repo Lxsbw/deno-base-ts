@@ -13,4 +13,8 @@ router.get('/hello', context => {
   context.response.body = { mess: 'hello deno!' };
 });
 
+router.get('/swagger', context => {
+  context.response.redirect('/');
+});
+
 export default router;
